@@ -2,7 +2,7 @@
 
 require "bundler/inline"
 
-LOG_FILE = "grab_packt.log"
+LOG_FILE = "packtgrab.log"
 
 gemfile true do
   source "https://rubygems.org"
@@ -16,7 +16,7 @@ agent = Mechanize.new do |config|
   config.user_agent_alias = 'Windows Chrome' #:troll:
 end
 
-puts "packt grab started.....".blue
+puts "packt grab started.....".cyan
 agent.get("https://www.packtpub.com/packt/offers/free-learning") do |promo_page|
   # Get login form and sumbit
   page = promo_page.form_with(dom_id: "packt-user-login-form") do |form|
@@ -32,12 +32,11 @@ agent.get("https://www.packtpub.com/packt/offers/free-learning") do |promo_page|
 
   begin
     agent.click(promo_link)
-    puts "packt grab succeed.".green
     puts "Book title: #{book_title}".green
     puts "Claim URL: https://www.packtpub.com#{promo_link.href}".green
+    puts "packt grab succeed.".cyan
   rescue => e
     puts "packt grab failed, check #{LOG_FILE} for more details".red
     agent.log.fatal(e.message)
   end
-
 end
