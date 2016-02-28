@@ -15,7 +15,7 @@ Add it as a cron
 
 Within the open cron editor(assuming you clone it at $HOME)
 
-    <code> 0 14 * * * {your ruby path}/ruby {you packtgrab.rb path}/packtgrab.rb</code>
+    0 14 * * * {your ruby path}/ruby {you packtgrab.rb path}/packtgrab.rb
 
 or you could use it whatever you like... be creative
 
